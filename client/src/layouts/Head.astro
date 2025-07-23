@@ -1,6 +1,15 @@
 ---
+import fetchStyles from "../scripts/fetchStyles";
 import "../styles/global.css";
 import "normalize.css";
+
+const styles = (await fetchStyles()) || {
+  "font-main": "Outfit, sans-serif;",
+  "color-black": "rgba(26, 26, 26, 1)",
+  "color-white": "rgba(255, 255, 255, 1)",
+  "color-surface": "rgba(247, 247, 247, 1)",
+  "font-size": "10px",
+};
 const { title, description } = Astro.props;
 ---
 
@@ -13,6 +22,6 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title || "Default Title"}</title>
     <meta name="description" content={description || "Default Description"} />
-    <style is:global></style>
+    <style is:global define:vars={styles}></style>
   </head>
 </html>

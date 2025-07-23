@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "designs",
+  "info": {
+    "singularName": "design",
+    "pluralName": "designs",
+    "displayName": "Design"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "designSystem": {
+      "type": "json"
+    }
+  }
+}
