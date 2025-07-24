@@ -1,0 +1,32 @@
+---
+const { title, text } = Astro.props;
+---
+
+<div class="headline">
+  <h2>{title}</h2>
+  <p>{text}</p>
+</div>
+
+<style>
+  h2,
+  p {
+    text-align: center;
+  }
+  h2 {
+    color: var(--color-textPrimary);
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+  p {
+    margin-top: 1rem;
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  .headline {
+    max-width: 500px;
+    margin-inline: auto;
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+const {
+  heading,
+  text,
+  img,
+  iconImg,
+  flex,
+  headingSize,
+  iconImgAlt,
+  containerClass,
+} = Astro.props;
+console.log("🚀 ~ iconImg:", iconImg);
+const justifyContent = img ? "space-between" : "unset";
+---
+
+<div
+  data-justify={justifyContent}
+  class="container"
+  style={{
+    flex: flex,
+    justifyContent: justifyContent,
+    alignItems: img ? "center" : "unset",
+  }}
+>
+  <div class="content">
+    {iconImg && <img class="icon-image" src={iconImg.src} alt={iconImgAlt} />}
+    <div class="text">
+      <h3
+        style={{
+          fontSize:
+            containerClass === "container-big"
+              ? `clamp(8rem, 6.25vw + 6.5rem, ${headingSize})`
+              : `clamp(7rem, 6.25vw + 6.5rem, ${headingSize})`,
+        }}
+      >
+        {heading}
+      </h3>
+      <p>{text}</p>
+    </div>
+  </div>
+  {
+    img && (
+      <div class="shape-container">
+        <img class="shape-image" src={img.src} alt="" />
+      </div>
+    )
+  }
+</div>
+<script>
+  function applyContainerCenter() {
+    const containers = document.querySelectorAll(".container");
+    if (window.matchMedia("(max-width: 580px)").matches) {
+      containers.forEach((el) => (el.style.justifyContent = "center"));
+    } else {
+      containers.forEach(
+        (el) =>
+          (el.style.justifyContent = el.dataset.justify || "space-between"),
+      );
+    }
+  }
+  window.addEventListener("resize", applyContainerCenter);
+  window.addEventListener("DOMContentLoaded", applyContainerCenter);
+</script>
+<style>
+  h3 {
+    font-weight: 500;
+  }
+  p {
+    line-height: 1.25;
+    font-size: 1.25rem;
+    font-weight: 200;
+    letter-spacing: -1px;
+  }
+  .icon-image {
+    max-width: 48px;
+  }
+  .content {
+    padding: 2rem 2rem 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 584px;
+  }
+  .container {
+    background-color: var(--color-surface);
+    min-height: 584px;
+    display: flex;
+  }
+  .shape-image,
+  .shape-container {
+    max-width: 156px;
+  }
+</style>

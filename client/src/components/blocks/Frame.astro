@@ -1,0 +1,48 @@
+---
+import StatsContainer from "./StatsContainer.astro";
+import shapeImage from "../../assets/2_b.webp";
+import HeadCircuitImage from "../../assets/HeadCircuit.svg";
+import StarImage from "../../assets/Star.svg";
+import UsersThreeImage from "../../assets/UsersThree.svg";
+---
+
+<div class="frame">
+  <StatsContainer
+    heading="200"
+    flex="2"
+    iconImg={HeadCircuitImage}
+    iconImgAlt="Head Circuit"
+    text="Lorem ipsum dolor sit amet"
+    img={shapeImage}
+    headingSize="12.5rem"
+    class="container-big"
+  />
+  <StatsContainer
+    heading="120"
+    flex="1"
+    iconImg={StarImage}
+    iconImgAlt="Star"
+    text="Lorem ipsum dolor sit amet"
+    headingSize="7.5rem"
+    class="container-small"
+  />
+  <StatsContainer
+    heading="10"
+    flex="1"
+    iconImg={UsersThreeImage}
+    iconImgAlt="Users Three"
+    text="Lorem ipsum dolor sit amet"
+    headingSize="7.5rem"
+    containerClass="container-small"
+  />
+</div>
+
+<style>
+  .frame {
+    display: flex;
+    gap: 0.9375rem;
+    max-width: 1200px;
+    margin-inline: auto;
+    margin-top: 3.75rem;
+  }
+</style>
