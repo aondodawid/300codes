@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_stats_containers",
+  "info": {
+    "displayName": "Stats container",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "number": {
+      "type": "biginteger"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

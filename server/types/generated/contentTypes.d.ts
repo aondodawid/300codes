@@ -506,6 +506,41 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDashboardDashboard extends Struct.SingleTypeSchema {
+  collectionName: 'dashboards';
+  info: {
+    displayName: 'Dashboard';
+    pluralName: 'dashboards';
+    singularName: 'dashboard';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    frame: Schema.Attribute.DynamicZone<
+      ['shared.stats-container-big', 'shared.stats-container']
+    >;
+    headline: Schema.Attribute.DynamicZone<
+      ['shared.title', 'shared.paragraph']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dashboard.dashboard'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDesignDesign extends Struct.SingleTypeSchema {
   collectionName: 'designs';
   info: {
@@ -1081,6 +1116,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::dashboard.dashboard': ApiDashboardDashboard;
       'api::design.design': ApiDesignDesign;
       'api::global.global': ApiGlobalGlobal;
       'plugin::content-releases.release': PluginContentReleasesRelease;

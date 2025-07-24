@@ -1,5 +1,3 @@
-:root {
-}
 /* Minimal reset */
 html {
   box-sizing: border-box;
@@ -41,6 +39,7 @@ body {
   border-color: var(--color-white);
 }
 
+/* Responsive styles */
 @media (max-width: 768px) {
   .wrapper {
     width: 100% !important;

@@ -22,6 +22,17 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedParagraph extends Struct.ComponentSchema {
+  collectionName: 'components_shared_paragraphs';
+  info: {
+    displayName: 'Paragraph';
+    icon: 'write';
+  };
+  attributes: {
+    text: Schema.Attribute.Text;
+  };
+}
+
 export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
@@ -73,15 +84,57 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedStatsContainer extends Struct.ComponentSchema {
+  collectionName: 'components_shared_stats_containers';
+  info: {
+    displayName: 'Stats container';
+    icon: 'dashboard';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    number: Schema.Attribute.BigInteger;
+  };
+}
+
+export interface SharedStatsContainerBig extends Struct.ComponentSchema {
+  collectionName: 'components_shared_stats_container_bigs';
+  info: {
+    displayName: 'Stats container big';
+    icon: 'dashboard';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    number: Schema.Attribute.BigInteger;
+  };
+}
+
+export interface SharedTitle extends Struct.ComponentSchema {
+  collectionName: 'components_shared_titles';
+  info: {
+    displayName: 'Title';
+    icon: 'bold';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.html': SharedHtml;
       'shared.media': SharedMedia;
+      'shared.paragraph': SharedParagraph;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'shared.stats-container': SharedStatsContainer;
+      'shared.stats-container-big': SharedStatsContainerBig;
+      'shared.title': SharedTitle;
     }
   }
 }
