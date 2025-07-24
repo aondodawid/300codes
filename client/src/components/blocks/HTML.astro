@@ -1,0 +1,54 @@
+---
+interface HTMLProps {
+  html: string;
+}
+
+let { html } = Astro.props as HTMLProps;
+const scriptRegex = /^<script\b([^>]*)>[\s\S]*<\/script>$/;
+const matchScript = html?.trim().match(scriptRegex);
+
+let attributesObject: Record<string, string> = {};
+if (matchScript) {
+  const attributesString = matchScript[1].trim();
+  const attributesArray = attributesString.match(/(\w+)="([^"]*)"/g);
+
+  if (attributesArray) {
+    attributesArray.forEach((attribute) => {
+      const [key, value] = attribute.split("=");
+      attributesObject[key] = value.replace(/"/g, ""); // Remove the quotes from the value
+    });
+  }
+
+  html = html.replace(/^<script\b[^>]*>/, "").replace(/<\/script>$/, "");
+}
+
+// Handle <link> tags
+const linkRegex = /<link\b([^>]*)\/?>/g;
+let linkMatch;
+const links = [];
+while ((linkMatch = linkRegex.exec(html)) !== null) {
+  const attributesLinkString = linkMatch[1].trim();
+  const attributesLinkArray = attributesLinkString.match(/(\w+)="([^"]*)"/g);
+  const linkAttributesObject: Record<string, string> = {};
+
+  if (attributesLinkArray) {
+    attributesLinkArray.forEach((attribute) => {
+      const [key, value] = attribute.split('="');
+      linkAttributesObject[key] = value.replace(/"/g, "");
+    });
+  }
+
+  links.push(linkAttributesObject);
+}
+---
+
+{
+  html &&
+    ((Object.keys(attributesObject).length > 0 && (
+      <script {...attributesObject} set:html={html} />
+    )) ||
+      (links &&
+        links.map((link) => {
+          return <link {...link} />;
+        })) || <div set:html={html} />)
+}

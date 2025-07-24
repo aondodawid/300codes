@@ -1,9 +1,22 @@
 ---
+import HTML from "../components/blocks/HTML.astro";
 import fetchStyles from "../scripts/fetchStyles";
+import fetchGlobals from "../scripts/fetchGlobals";
+
 import "../styles/global.css";
 import "normalize.css";
 
-const styles = (await fetchStyles()) || {
+let faviconUrl = "/favicon.svg";
+
+const STRAPI_BASE_URL =
+  import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
+const globalsUrl = `${STRAPI_BASE_URL}/api/global?populate=*`;
+const globals = await fetchGlobals(globalsUrl);
+const { favicon, siteName, siteDescription, html } = globals;
+if (favicon) faviconUrl = `${STRAPI_BASE_URL}${favicon}`;
+
+const designUrl = `${STRAPI_BASE_URL}/api/design?populate=*`;
+const styles = (await fetchStyles(designUrl)) || {
   "font-main": "Outfit, sans-serif;",
   "color-black": "rgba(26, 26, 26, 1)",
   "color-white": "rgba(255, 255, 255, 1)",
@@ -18,10 +31,20 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={faviconUrl} />
     <meta name="generator" content={Astro.generator} />
-    <title>{title || "Default Title"}</title>
-    <meta name="description" content={description || "Default Description"} />
+    <title>{siteName || title || "Default Title"}</title>
+    <meta
+      name="description"
+      content={siteDescription || description || "Default Description"}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <HTML html={html} />
     <style is:global define:vars={styles}></style>
   </head>
 </html>

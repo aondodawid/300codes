@@ -1,15 +1,8 @@
 import { fetchData } from "./utils";
 
-const STRAPI_BASE_URL =
-  import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
-const getStyles = async () => {
-  const json = await fetchData(
-    `${STRAPI_BASE_URL}/api/design?populate=*`,
-    "",
-    "Failed to fetch design system",
-  );
-  const designSystem = JSON.stringify(json?.data?.designSystem);
+const fetchStyles = async (url: string) => {
+  const json = await fetchData(url, "", "Failed to fetch design system");
   return json?.data?.designSystem;
 };
 
-export default getStyles;
+export default fetchStyles;
