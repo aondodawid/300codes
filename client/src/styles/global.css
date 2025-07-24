@@ -54,7 +54,6 @@ body {
     max-height: 370px !important;
     height: 370px !important;
     min-height: 370px !important;
-    border: solid red 1px;
   }
   .frame > .container {
     max-height: 262px !important;
@@ -65,7 +64,6 @@ body {
     height: unset !important;
   }
   .shape-image {
-    /* display: none; */
     max-height: 360px;
   }
 }
