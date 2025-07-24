@@ -1,6 +1,15 @@
 ---
 import Headline from "./blocks/Headline.astro";
+import { getCollection } from "astro:content";
 import Frame from "./blocks/Frame.astro";
+
+const strapiDashboard = await getCollection("strapiDashboardLoader");
+
+if (!strapiDashboard || strapiDashboard.length === 0) {
+  throw new Error("No strapiDashboard data found");
+} else {
+  console.log("🚀 ~ strapiDashboard:", strapiDashboard[0].data);
+}
 ---
 
 <div class="wrapper">
