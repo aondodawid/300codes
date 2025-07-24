@@ -1,5 +1,6 @@
 ---
-const title = Astro.props.title || "Headline";
+const { title, text } = Astro.props.title || "Headline";
 ---
 
 <h2>{title}</h2>
+<p>{text}</p>

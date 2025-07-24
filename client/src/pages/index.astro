@@ -1,10 +1,13 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Head from '../layouts/Head.astro';
-import Layout from '../layouts/Layout.astro';
-
+import Headline from "../components/Headline.astro";
+import Head from "../layouts/Head.astro";
+import Layout from "../layouts/Layout.astro";
 ---
+
 <Head title="Home Page" description="Welcome to the home page" />
 <Layout>
-	<Welcome />
+  <Headline
+    title="Welcome to the Home Page"
+    text="This is the home page of our website."
+  />
 </Layout>
