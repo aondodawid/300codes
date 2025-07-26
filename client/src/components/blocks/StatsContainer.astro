@@ -19,7 +19,9 @@ console.log("🚀 ~ imgIconSrc:", imgIconSrc);
 
 <div class={`container ${className}`}>
   <div class="content">
-    {icon && <img class="icon-image" src={imgIconSrc} alt={iconImgAlt} />}
+    <div class="icon-container">
+      {icon && <img class="icon-image" src={imgIconSrc} alt={iconImgAlt} />}
+    </div>
     <div class="text">
       <h3>
         {number}
