@@ -54,6 +54,12 @@ body {
     flex-direction: column;
     gap: 1.25rem;
   }
+  .container-small {
+    width: unset !important;
+  }
+  .container-big {
+    max-width: unset !important;
+  }
 
   .container:first-child {
     max-height: 370px !important;

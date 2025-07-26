@@ -1,16 +1,25 @@
 ---
-const { img, iconImg, iconImgAlt, number, description, __component } =
+const { img, icon, iconImgAlt, number, description, __component, iuco } =
   Astro.props;
+
+const STRAPI_BASE_URL =
+  import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
 const className =
   __component && __component === "shared.stats-container-big"
     ? "container-big"
     : "container-small";
-// console.log("Astro.props", Astro.props);
+const imgIconSrc = icon?.src
+  ? icon.src
+  : icon?.url
+    ? `${STRAPI_BASE_URL}${icon?.url}`
+    : "";
+console.log("Astro.props", Astro.props);
+console.log("🚀 ~ imgIconSrc:", imgIconSrc);
 ---
 
 <div class={`container ${className}`}>
   <div class="content">
-    {iconImg && <img class="icon-image" src={iconImg.src} alt={iconImgAlt} />}
+    {icon && <img class="icon-image" src={imgIconSrc} alt={iconImgAlt} />}
     <div class="text">
       <h3>
         {number}
@@ -44,20 +53,27 @@ const className =
     display: flex;
     background-color: var(--color-surface);
     min-height: 584px;
-    display: flex;
     border-radius: 3px;
   }
   .container-big {
-    flex: 2;
+    /* flex: 1.5; */
     justify-content: space-between;
     align-items: center;
+    max-width: 584px;
+    width: 100%;
   }
   .container-big h3 {
-    font-size: clamp(8rem, 6.25vw + 6.5rem, 12.5rem);
+    font-size: clamp(7rem, 6.25vw + 6.5rem, 12.5rem);
+  }
+  .container-small {
+    width: 293px;
+    /* flex: 1; */
   }
   .container-small h3 {
-    flex: 1;
-    font-size: clamp(7rem, 6.25vw + 6.5rem, 7.5rem);
+    font-size: clamp(6rem, 6.25vw + 6.5rem, 7.5rem);
+  }
+  .container-big .text {
+    max-width: 355px;
   }
 
   .content {
