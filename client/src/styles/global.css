@@ -73,6 +73,9 @@ body {
   .container {
     justify-content: center !important;
   }
+  .container-big {
+    justify-content: space-between;
+  }
 }
 @media (max-width: 328px) {
   .content {
