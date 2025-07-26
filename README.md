@@ -57,7 +57,11 @@ Create a .env file in the server directory if it doesn't already exist.
 
 Add the required environment variables (e.g. database connection, admin credentials, etc.).
 
+---
+
 ## Refer to .env.example or project-specific documentation for the correct variables.
+
+---
 
 ### 🔐 4. Access Strapi Admin Panel
 
@@ -75,7 +79,11 @@ Once the server is running, open your browser and go to:
 http://localhost:1337/admin
 ```
 
+---
+
 ## Create your administrator account or log in using existing credentials.
+
+---
 
 ### 🔓 5. Set Permissions in Strapi
 
@@ -83,9 +91,11 @@ Go to Settings → Roles → Public and enable the following permissions:
 
 dashboard: find
 
-globals: find
+## globals: find
 
 ## Save the changes to apply updated access rules.
+
+---
 
 ### 💻 6. Frontend Setup (Client)
 
@@ -103,6 +113,8 @@ Use npm to install all frontend dependencies:
 
 npm install
 ```
+
+---
 
 ### 🚀 7. Start the Application
 
