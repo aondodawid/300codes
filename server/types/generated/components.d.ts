@@ -1,5 +1,15 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface LayoutDesign extends Struct.ComponentSchema {
+  collectionName: 'components_layout_designs';
+  info: {
+    displayName: 'Design';
+  };
+  attributes: {
+    designSystem: Schema.Attribute.JSON;
+  };
+}
+
 export interface SharedHtml extends Struct.ComponentSchema {
   collectionName: 'components_shared_htmls';
   info: {
@@ -125,6 +135,7 @@ export interface SharedTitle extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'layout.design': LayoutDesign;
       'shared.html': SharedHtml;
       'shared.media': SharedMedia;
       'shared.paragraph': SharedParagraph;

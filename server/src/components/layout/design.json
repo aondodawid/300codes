@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_layout_designs",
+  "info": {
+    "displayName": "Design"
+  },
+  "options": {},
+  "attributes": {
+    "designSystem": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

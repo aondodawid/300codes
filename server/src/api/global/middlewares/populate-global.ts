@@ -4,16 +4,15 @@
 
 const populate = {
   populate: {
-    favicon :{
+    favicon: {
       fields: ["url", "alternativeText", "name", "width", "height"],
     },
-    defaultSeo:  {      
-        populate: {
-          shareImage: {
-            fields: ["url", "alternativeText", "name", "width", "height"],
-
-          }
+    defaultSeo: {
+      populate: {
+        shareImage: {
+          fields: ["url", "alternativeText", "name", "width", "height"],
         },
+      },
     },
     blocks: {
       on: {
@@ -38,7 +37,6 @@ const populate = {
         "shared.quote": {
           populate: true,
         },
-
         "shared.rich-text": {
           populate: true,
         },
