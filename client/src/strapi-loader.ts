@@ -58,7 +58,6 @@ export function strapiLoader(
         logger.error(
           `Error loading Strapi content: ${(error as Error).message}`,
         );
-        throw error;
       }
     },
 
@@ -165,7 +164,7 @@ async function fetchFromStrapi(
   try {
     const response = await fetch(url.href);
     if (!response.ok) {
-      throw new Error(`Failed to fetch from Strapi: ${response.statusText}`);
+      console.error(`Failed to fetch from Strapi: ${response.statusText}`);
     }
     return response.json();
   } catch (error) {

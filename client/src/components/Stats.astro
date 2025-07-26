@@ -8,7 +8,7 @@ import BlockRenderer from "./blocks/BlockRenderer.astro";
 
 const strapiDashboardCollection = await getCollection("strapiDashboardLoader");
 if (!strapiDashboardCollection || strapiDashboardCollection.length === 0) {
-  throw new Error("No strapiDashboard data found");
+  console.error("No strapiDashboard data found");
 }
 
 const strapiDashboardCollectionArray = strapiDashboardCollection[0] || [];
