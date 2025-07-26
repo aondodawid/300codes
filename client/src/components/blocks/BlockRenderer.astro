@@ -1,5 +1,7 @@
 ---
 import StatsContainer from "./StatsContainer.astro";
+import Paragraph from "./Paragraph.astro";
+import Title from "./Title.astro";
 import HTML from "./HTML.astro";
 
 interface Block {
@@ -16,6 +18,8 @@ const componentMap: Record<string, any> = {
   "shared.html": HTML,
   "shared.stats-container": StatsContainer,
   "shared.stats-container-big": StatsContainer,
+  "shared.title": Title,
+  "shared.paragraph": Paragraph,
 };
 ---
 

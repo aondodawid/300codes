@@ -1,6 +1,5 @@
 ---
-const { img, icon, iconImgAlt, number, description, __component, iuco } =
-  Astro.props;
+const { image, icon, number, description, __component } = Astro.props;
 
 const STRAPI_BASE_URL =
   import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
@@ -13,14 +12,25 @@ const imgIconSrc = icon?.src
   : icon?.url
     ? `${STRAPI_BASE_URL}${icon?.url}`
     : "";
-console.log("Astro.props", Astro.props);
-console.log("🚀 ~ imgIconSrc:", imgIconSrc);
+const imgShapeSrc = image?.src
+  ? image.src
+  : image?.url
+    ? `${STRAPI_BASE_URL}${image?.url}`
+    : "";
 ---
 
 <div class={`container ${className}`}>
   <div class="content">
     <div class="icon-container">
-      {icon && <img class="icon-image" src={imgIconSrc} alt={iconImgAlt} />}
+      {
+        icon && (
+          <img
+            class="icon-image"
+            src={imgIconSrc}
+            alt={icon?.alternativeText}
+          />
+        )
+      }
     </div>
     <div class="text">
       <h3>
@@ -30,9 +40,13 @@ console.log("🚀 ~ imgIconSrc:", imgIconSrc);
     </div>
   </div>
   {
-    img && (
+    image && (
       <div class="shape-container">
-        <img class="shape-image" src={img.src} alt="" />
+        <img
+          class="shape-image"
+          src={imgShapeSrc}
+          alt={image?.alternativeText}
+        />
       </div>
     )
   }
@@ -58,7 +72,6 @@ console.log("🚀 ~ imgIconSrc:", imgIconSrc);
     border-radius: 3px;
   }
   .container-big {
-    /* flex: 1.5; */
     justify-content: space-between;
     align-items: center;
     max-width: 584px;
@@ -69,7 +82,6 @@ console.log("🚀 ~ imgIconSrc:", imgIconSrc);
   }
   .container-small {
     width: 293px;
-    /* flex: 1; */
   }
   .container-small h3 {
     font-size: clamp(6rem, 6.25vw + 6.5rem, 7.5rem);

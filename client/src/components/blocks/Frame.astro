@@ -11,26 +11,23 @@ const { frame } = Astro.props;
 <div class="frame">
   <StatsContainer
     number="200"
-    iconImg={HeadCircuitImage}
-    iconImgAlt="Head Circuit"
+    icon={{ ...HeadCircuitImage, alternativeText: "Head Circuit" }}
+    alternativeText="Head Circuit"
     description="Lorem ipsum dolor sit amet"
-    img={shapeImage}
+    image={{ ...shapeImage, alternativeText: "shape" }}
     __component="shared.stats-container-big"
   />
   <StatsContainer
     number="120"
-    iconImg={StarImage}
-    iconImgAlt="Star"
+    icon={{ ...StarImage, alternativeText: "Star" }}
     description="Lorem ipsum dolor sit amet"
   />
   <StatsContainer
     number="10"
-    iconImg={UsersThreeImage}
-    iconImgAlt="Users Three"
+    icon={{ ...UsersThreeImage, alternativeText: "Users Three" }}
+    alternativeText="Users Three"
     description="Lorem ipsum dolor sit amet"
   />
 </div>
 
-<style>
-
-</style>
+<style></style>

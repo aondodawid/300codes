@@ -45,6 +45,10 @@ body {
   margin-inline: auto;
   margin-top: 3.75rem;
 }
+.headline {
+  max-width: 500px;
+  margin-inline: auto;
+}
 /* Responsive styles */
 @media (max-width: 768px) {
   .wrapper {

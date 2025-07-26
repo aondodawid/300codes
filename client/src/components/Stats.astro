@@ -15,11 +15,17 @@ const strapiDashboardCollectionArray = strapiDashboardCollection[0] || [];
 const strapiDashboardData = strapiDashboardCollectionArray?.data || {};
 // console.log("🚀 ~ strapiDashboardData:", strapiDashboardData?.frame);
 const strapiFrame = strapiDashboardData?.frame || null;
+const strapiHeadline = strapiDashboardData?.headline || null;
+console.log("🚀 ~ strapiHeadline:", strapiHeadline);
 // const strapiFrame = null;
 ---
 
 <div class="wrapper">
-  <Headline title="Headline" text="Lorem ipsum dolor sit amet" />
+  {
+    (strapiHeadline && <BlockRenderer blocks={strapiHeadline} />) || (
+      <Headline title="Headline" text="Lorem ipsum dolor sit amet" />
+    )
+  }
 
   {
     (strapiFrame && (
