@@ -1,4 +1,5 @@
 ---
+import StatsContainer from "./StatsContainer.astro";
 import HTML from "./HTML.astro";
 
 interface Block {
@@ -13,6 +14,7 @@ interface BlockRendererProps {
 const { blocks } = Astro.props as BlockRendererProps;
 const componentMap: Record<string, any> = {
   "shared.html": HTML,
+  "shared.stats-container": StatsContainer,
 };
 ---
 

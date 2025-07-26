@@ -24,15 +24,7 @@ export function strapiLoader(
     load: async function (this: Loader, { store, meta, logger }) {
       const lastSynced = meta.get("lastSynced");
       const isPlural = type === "collections" ? "s" : "";
-
-      // Avoid frequent syncs
-      if (lastSynced && Date.now() - Number(lastSynced) < SYNC_INTERVAL) {
-        logger.info("Skipping Strapi sync");
-        return;
-      }
-
       logger.info("Fetching posts from Strapi");
-
       try {
         // Fetch and store the content
         const data = await fetchFromStrapi(`/api/${contentType}${isPlural}`);

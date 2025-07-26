@@ -4,11 +4,13 @@ import UsersThreeImage from "../../assets/UsersThree.svg";
 import StatsContainer from "./StatsContainer.astro";
 import shapeImage from "../../assets/2_b.webp";
 import StarImage from "../../assets/Star.svg";
+
+const { frame } = Astro.props;
 ---
 
 <div class="frame">
   <StatsContainer
-    heading="200"
+    number="200"
     flex="2"
     iconImg={HeadCircuitImage}
     iconImgAlt="Head Circuit"
@@ -18,7 +20,7 @@ import StarImage from "../../assets/Star.svg";
     class="container-big"
   />
   <StatsContainer
-    heading="120"
+    number="120"
     flex="1"
     iconImg={StarImage}
     iconImgAlt="Star"
@@ -27,7 +29,7 @@ import StarImage from "../../assets/Star.svg";
     class="container-small"
   />
   <StatsContainer
-    heading="10"
+    number="10"
     flex="1"
     iconImg={UsersThreeImage}
     iconImgAlt="Users Three"

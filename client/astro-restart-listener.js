@@ -1,26 +1,48 @@
 import { createServer } from "http";
 import { dev } from "astro";
 
+const rootDir = process.cwd();
+
 let devServer = null;
 
-const rootDir = process.cwd(); // Current working directory (Astro root)
-
 async function startAstro() {
-  if (devServer) {
-    console.log("here");
-    await devServer.stop();
-    devServer = null;
-  }
-
+  console.log("Astro dev server is running.");
   devServer = await dev({ root: rootDir });
-  console.log("Astro dev server started.");
+}
+async function restartAstro() {
+  await devServer.stop();
+  devServer = await dev({ root: rootDir });
 }
 
 const server = createServer(async (req, res) => {
+  res.setHeader("X-XSS-Protection", "1; mode=block"); // (niezalecany, ale możliwy)
+  res.setHeader("Content-Security-Policy", "default-src 'self'");
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "no-referrer");
+
   if (req.method === "POST" && req.url === "/restart-astro") {
-    await startAstro();
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ status: "Astro dev server restarted" }));
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", () => {
+      try {
+        const jsonData = JSON.parse(body);
+        console.log("Dane z POST:", jsonData);
+        if (jsonData.secret !== process.env.ASTRO_RESTART_SECRET) {
+          res.writeHead(403, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Forbidden" }));
+          return;
+        }
+        restartAstro();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ status: "Astro dev server restarted" }));
+      } catch (err) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "invalid JSON" }));
+      }
+    });
   } else {
     res.writeHead(404);
     res.end();
