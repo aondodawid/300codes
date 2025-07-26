@@ -17,10 +17,25 @@ const populate = {
     frame: {
       on: {
         "shared.stats-container-big": {
-          populate: true,
+          populate: {
+            icon: {
+              populate: {
+                fields: ["url", "alternativeText", "name", "width", "height"],
+              },
+            },
+            image: {
+              populate: {
+                fields: ["url", "alternativeText", "name", "width", "height"],
+              },
+            },
+          },
         },
         "shared.stats-container": {
-          populate: true,
+          populate: {
+            icon: {
+              fields: ["url", "alternativeText", "name", "width", "height"],
+            },
+          },
         },
       },
     },

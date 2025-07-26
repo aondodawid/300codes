@@ -1,41 +1,21 @@
 ---
-const {
-  text,
-  img,
-  iconImg,
-  flex,
-  headingSize,
-  iconImgAlt,
-  containerClass,
-  number,
-  description,
-} = Astro.props;
-const justifyContent = img ? "space-between" : "unset";
+const { img, iconImg, iconImgAlt, number, description, __component } =
+  Astro.props;
+const className =
+  __component && __component === "shared.stats-container-big"
+    ? "container-big"
+    : "container-small";
+// console.log("Astro.props", Astro.props);
 ---
 
-<div
-  data-justify={justifyContent}
-  class="container"
-  style={{
-    flex: flex,
-    justifyContent: justifyContent,
-    alignItems: img ? "center" : "unset",
-  }}
->
+<div class={`container ${className}`}>
   <div class="content">
     {iconImg && <img class="icon-image" src={iconImg.src} alt={iconImgAlt} />}
     <div class="text">
-      <h3
-        style={{
-          fontSize:
-            containerClass === "container-big"
-              ? `clamp(8rem, 6.25vw + 6.5rem, ${headingSize})`
-              : `clamp(7rem, 6.25vw + 6.5rem, ${headingSize})`,
-        }}
-      >
+      <h3>
         {number}
       </h3>
-      <p>{text}</p>
+      <p>{description}</p>
     </div>
   </div>
   {
@@ -47,19 +27,19 @@ const justifyContent = img ? "space-between" : "unset";
   }
 </div>
 <script>
-  function applyContainerCenter() {
-    const containers = document.querySelectorAll(".container");
-    if (window.matchMedia("(max-width: 580px)").matches) {
-      containers.forEach((el) => (el.style.justifyContent = "center"));
-    } else {
-      containers.forEach(
-        (el) =>
-          (el.style.justifyContent = el.dataset.justify || "space-between"),
-      );
-    }
-  }
-  window.addEventListener("resize", applyContainerCenter);
-  window.addEventListener("DOMContentLoaded", applyContainerCenter);
+  // function applyContainerCenter() {
+  //   const containers = document.querySelectorAll(".container");
+  //   if (window.matchMedia("(max-width: 580px)").matches) {
+  //     containers.forEach((el) => (el.style.justifyContent = "center"));
+  //   } else {
+  //     containers.forEach(
+  //       (el) =>
+  //         (el.style.justifyContent = el.dataset.justify || "space-between"),
+  //     );
+  //   }
+  // }
+  // window.addEventListener("resize", applyContainerCenter);
+  // window.addEventListener("DOMContentLoaded", applyContainerCenter);
 </script>
 <style>
   h3 {
@@ -76,11 +56,25 @@ const justifyContent = img ? "space-between" : "unset";
   }
 
   .container {
+    display: flex;
     background-color: var(--color-surface);
     min-height: 584px;
     display: flex;
     border-radius: 3px;
   }
+  .container-big {
+    flex: 2;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .container-big h3 {
+    font-size: clamp(8rem, 6.25vw + 6.5rem, 12.5rem);
+  }
+  .container-small h3 {
+    flex: 1;
+    font-size: clamp(7rem, 6.25vw + 6.5rem, 7.5rem);
+  }
+
   .content {
     padding: 2rem 2rem 2.5rem 2rem;
     display: flex;

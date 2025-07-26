@@ -10,9 +10,12 @@ const strapiDashboardCollection = await getCollection("strapiDashboardLoader");
 if (!strapiDashboardCollection || strapiDashboardCollection.length === 0) {
   throw new Error("No strapiDashboard data found");
 }
-const strapiDashboardData = strapiDashboardCollection[0]?.data || {};
-// console.log("🚀 ~ strapiDashboardData:", strapiDashboardData);
-const strapiFrame = strapiDashboardData?.frame || null;
+
+const strapiDashboardCollectionArray = strapiDashboardCollection[0] || [];
+const strapiDashboardData = strapiDashboardCollectionArray?.data || {};
+console.log("🚀 ~ strapiDashboardData:", strapiDashboardData?.frame);
+// const strapiFrame = strapiDashboardData?.frame || null;
+const strapiFrame = null;
 ---
 
 <div class="wrapper">

@@ -1,6 +1,7 @@
 import { createServer } from "http";
 import { dev } from "astro";
 
+const ASTRO_RESTART_SECRET = "asdsdasyzx";
 const rootDir = process.cwd();
 
 let devServer = null;
@@ -10,6 +11,7 @@ async function startAstro() {
   devServer = await dev({ root: rootDir });
 }
 async function restartAstro() {
+  console.log("Restarting Astro dev server...");
   await devServer.stop();
   devServer = await dev({ root: rootDir });
 }
@@ -26,15 +28,18 @@ const server = createServer(async (req, res) => {
     req.on("data", (chunk) => {
       body += chunk.toString();
     });
+
     req.on("end", () => {
       try {
         const jsonData = JSON.parse(body);
-        console.log("Dane z POST:", jsonData);
-        if (jsonData.secret !== process.env.ASTRO_RESTART_SECRET) {
+        console.log("jsonData.secret ", jsonData.secret);
+        console.log("process.env.ASTRO_RESTART_SECRET", ASTRO_RESTART_SECRET);
+        if (jsonData.secret !== ASTRO_RESTART_SECRET) {
           res.writeHead(403, { "Content-Type": "application/json" });
           res.end(JSON.stringify({ error: "Forbidden" }));
           return;
         }
+        console.log("here");
         restartAstro();
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ status: "Astro dev server restarted" }));
