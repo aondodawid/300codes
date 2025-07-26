@@ -14,13 +14,20 @@ if (!strapiDashboardCollection || strapiDashboardCollection.length === 0) {
 const strapiDashboardCollectionArray = strapiDashboardCollection[0] || [];
 const strapiDashboardData = strapiDashboardCollectionArray?.data || {};
 console.log("🚀 ~ strapiDashboardData:", strapiDashboardData?.frame);
-// const strapiFrame = strapiDashboardData?.frame || null;
-const strapiFrame = null;
+const strapiFrame = strapiDashboardData?.frame || null;
+// const strapiFrame = null;
 ---
 
 <div class="wrapper">
   <Headline title="Headline" text="Lorem ipsum dolor sit amet" />
-  {(strapiFrame && <BlockRenderer blocks={strapiFrame} />) || <Frame />}
+
+  {
+    (strapiFrame && (
+      <div class="frame">
+        <BlockRenderer blocks={strapiFrame} />
+      </div>
+    )) || <Frame />
+  }
 </div>
 
 <style>

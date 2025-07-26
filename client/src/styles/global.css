@@ -38,7 +38,13 @@ body {
   color: var(--color-black);
   border-color: var(--color-white);
 }
-
+.frame {
+  display: flex;
+  gap: 0.9375rem;
+  max-width: 1200px;
+  margin-inline: auto;
+  margin-top: 3.75rem;
+}
 /* Responsive styles */
 @media (max-width: 768px) {
   .wrapper {
