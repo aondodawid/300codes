@@ -9,11 +9,11 @@ This document outlines the steps required to set up and run the full-stack appli
 Unpack or clone the repository into your desired directory:
 
 ```bash
-git clone <repository-url> <target-folder>
+git clone git clone https://github.com/aondodawid/300codes.git <target-folder>
 cd <target-folder>
 ```
 
-## Replace <repository-url> and <target-folder> with your actual values.
+## Replace <target-folder> with your actual values.
 
 ## 📦 2. Backend Setup (Strapi Server)
 
