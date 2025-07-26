@@ -1,14 +1,15 @@
 ---
-const { text } = Astro.props;
+const { text, color } = Astro.props;
 ---
 
 <p>{text}</p>
-<style>
+<style define:vars={{ "color-paragraph": color || "unset" }}>
   p {
     margin-top: 1rem;
     font-weight: 300;
     font-size: 1.125rem;
     line-height: 1.5;
     text-align: center;
+    color: var(--color-paragraph);
   }
 </style>

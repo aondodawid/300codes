@@ -39,6 +39,8 @@ export interface SharedParagraph extends Struct.ComponentSchema {
     icon: 'write';
   };
   attributes: {
+    color: Schema.Attribute.String &
+      Schema.Attribute.CustomField<'plugin::rgba-color-picker.rgba-color-picker'>;
     text: Schema.Attribute.Text;
   };
 }
@@ -128,6 +130,8 @@ export interface SharedTitle extends Struct.ComponentSchema {
     icon: 'bold';
   };
   attributes: {
+    color: Schema.Attribute.String &
+      Schema.Attribute.CustomField<'plugin::rgba-color-picker.rgba-color-picker'>;
     title: Schema.Attribute.String;
   };
 }

@@ -11,12 +11,11 @@ const STRAPI_BASE_URL =
   import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
 const globalsUrl = `${STRAPI_BASE_URL}/api/global?populate=*`;
 const globals: any = await fetchGlobals(globalsUrl);
-console.log("🚀 ~ globals:", globals);
 const favicon = globals?.favicon || "";
 let siteName = globals?.siteName || "Default Site Name";
 let siteDescription = globals?.siteDescription || "Default Site Description";
 let html = globals?.html || null;
-const designSystem = globals?.designSystem || {};
+const designSystem = globals?.designSystem || null;
 if (favicon) faviconUrl = `${STRAPI_BASE_URL}${favicon}`;
 
 const styles = designSystem || {

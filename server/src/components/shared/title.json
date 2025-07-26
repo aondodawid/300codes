@@ -8,6 +8,10 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "color": {
+      "type": "customField",
+      "customField": "plugin::rgba-color-picker.rgba-color-picker"
     }
   },
   "config": {}

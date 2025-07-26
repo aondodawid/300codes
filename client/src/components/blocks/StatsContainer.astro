@@ -17,6 +17,7 @@ const imgShapeSrc = image?.src
   : image?.url
     ? `${STRAPI_BASE_URL}${image?.url}`
     : "";
+console.log("🚀 ~ imgShapeSrc:", imgShapeSrc);
 ---
 
 <div class={`container ${className}`}>
@@ -42,11 +43,13 @@ const imgShapeSrc = image?.src
   {
     image && (
       <div class="shape-container">
-        <img
-          class="shape-image"
-          src={imgShapeSrc}
-          alt={image?.alternativeText}
-        />
+        {imgShapeSrc !== "" && (
+          <img
+            class="shape-image"
+            src={imgShapeSrc}
+            alt={image?.alternativeText}
+          />
+        )}
       </div>
     )
   }

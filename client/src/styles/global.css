@@ -54,6 +54,9 @@ body {
   .wrapper {
     width: 100% !important;
   }
+  .container {
+    min-height: unset !important;
+  }
   .frame {
     flex-direction: column;
     gap: 1.25rem;
@@ -65,12 +68,12 @@ body {
     max-width: unset !important;
   }
 
-  .container:first-child {
+  .container-big {
     max-height: 370px !important;
     height: 370px !important;
     min-height: 370px !important;
   }
-  .frame > .container {
+  .container-small {
     max-height: 262px !important;
     height: 262px !important;
     min-height: unset;
