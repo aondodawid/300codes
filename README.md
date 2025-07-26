@@ -128,7 +128,3 @@ Step Description
 💡 Make sure both the backend (Strapi) and frontend servers are running simultaneously for full functionality.
 
 ---
-
-```
-
-```
